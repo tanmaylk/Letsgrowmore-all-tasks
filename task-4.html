@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calc {
+      width: 400px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .result {
+      width: 400px;
+      font-size: 36px;
+      text-align: center;
+      padding: 6px;
+      padding-right: 6px;
+      border: none;
+      outline: none;
+      border-radius: 50px;
+      background-color: #fffff;
+      width: 100%;
+      box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      margin-top: 20px;
+      
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px;
+      border: none;
+      outline: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background-color: #ffffff;
+      transition: background-color 0.3s ease;
+      box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      background-color: #f3f3f3;
+    }
+
+    .button-oper {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    .button-oper:hover {
+      background-color: #6F6E6E;
+    }
+
+    .button-equal {
+      background-color: #1e1e1e;
+      color: #fff;
+      grid-column: span 4;
+      margin-left: 150px;
+    }
+
+    .button-equal:hover {
+      
+      background-color:  #6F6E6E;
+    }
+  </style>
+</head>
+<body>
+  <div class="calc">
+    <input type="text" class="result" id="output" readonly>
+    <div class="buttons">
+      <button onclick="addToOutput(7)">7</button>
+      <button onclick="addToOutput(8)">8</button>
+      <button onclick="addToOutput(9)">9</button>
+      <button class="button-oper" onclick="addToOutput('/')">÷</button>
+      <button onclick="addToOutput(4)">4</button>
+      <button onclick="addToOutput(5)">5</button>
+      <button onclick="addToOutput(6)">6</button>
+      <button class="button-oper" onclick="addToOutput('*')">×</button>
+      <button onclick="addToOutput(1)">1</button>
+      <button onclick="addToOutput(2)">2</button>
+      <button onclick="addToOutput(3)">3</button>
+      <button class="button-oper" onclick="addToOutput('-')">−</button>
+      <button onclick="addToOutput(0)">0</button>
+      <button onclick="addToOutput('.')">.</button>
+      <button onclick="clearOutput()">C</button>
+      <button class="button-oper" onclick="addToOutput('+')">+</button>
+      <button class="button-equal" onclick="calculateOutput()">=</button>
+    </div>
+  </div>
+
+  <script>
+    function addToOutput(value) {
+      document.getElementById('output').value += value;
+    }
+
+    function calculateOutput() {
+      var output = document.getElementById('output').value;
+      var result = eval(output);
+      document.getElementById('output').
+      value = result;
+      document.getElementById('output').value = result;
+    }
+
+    function clearOutput() {
+      document.getElementById('output').value = '';
+    }
+  </script>
+</body>
+</html>

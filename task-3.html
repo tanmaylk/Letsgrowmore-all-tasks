@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; 
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 60px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      align-items: center;
+      justify-content: center; 
+
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 60px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+      align-items: center;
+      justify-content: center; 
+    }
+
+    .form-group input[type="file"] {
+      margin-top: 5px;
+      padding-right: 15px;
+      align-items: center;
+      justify-content: center; 
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: black;
+      color: #fff;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center; 
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .output-container {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 60px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-photo {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      object-position: center;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Registration Form</h1>
+    <form id="registrationForm" onsubmit="submitRegistration(event)">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullNameInput" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="emailInput" required>
+      </div>
+      <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input type="text" id="companyNameInput" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phoneNumberInput" required>
+      </div>
+      <div class="form-group">
+        <label for="profilePhoto">Profile Photo</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" required>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="submit-btn">Register</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="output-container" id="outputContainer"></div>
+
+  <script>
+    function submitRegistration(event) {
+      event.preventDefault();
+
+      var fullName = document.getElementById('fullNameInput').value;
+      var email = document.getElementById('emailInput').value;
+      var companyName = document.getElementById('companyNameInput').value;
+      var phoneNumber = document.getElementById('phoneNumberInput').value;
+      var profilePhoto = document.getElementById('profilePhotoInput').files[0];
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var outputContainer = document.getElementById('outputContainer');
+        outputContainer.innerHTML = `
+          <h2>Registration Details:</h2>
+          <img class="profile-photo" src="${e.target.result}" alt="Profile Photo">
+          <p><strong>Full Name:</strong> ${fullName}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Company Name:</strong> ${companyName}</p>
+          <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+        `;
+      };
+      reader.readAsDataURL(profilePhoto);
+
+      document.getElementById('registrationForm').reset();
+    }
+  </script>
+</body>
+</html>
